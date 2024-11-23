@@ -1,7 +1,7 @@
 {
-  "name": "@frontpile/button",
+  "name": "@frontpile/input",
   "version": "0.1.1",
-  "description": "Developer-focused, production-ready React button component.",
+  "description": "Developer-focused, production-ready React input component.",
   "main": "index.js",
   "sideEffects": false,
   "files": [

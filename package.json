@@ -5,5 +5,8 @@
   "scripts": {},
   "keywords": [],
   "author": "Fullpile",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
 }
