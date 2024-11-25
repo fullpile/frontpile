@@ -18,6 +18,7 @@
 
     /* Emit */
     "declaration": true,                              /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
+    "declarationDir": "dist",
     // "outDir": "dist",
     "sourceMap": true,                                /* Create source map files for emitted JavaScript files. */
     "noEmit": true,                                   /* Disable emitting files from a compilation. */
