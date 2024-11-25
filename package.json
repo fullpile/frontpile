@@ -2,6 +2,10 @@
   "name": "frontpile",
   "version": "0.1.1",
   "description": "Developer-focused, production-ready React component library.",
+  "packageManager": "pnpm@9.14.2",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "build:package": "tsx scripts/build-package.ts",
     "build:all": "tsx scripts/build-all-packages.ts"
