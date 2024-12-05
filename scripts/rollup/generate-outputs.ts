@@ -5,4 +5,5 @@ export async function generateOutputs(bundle: RollupBuild, outputOptionsList: Ou
 	for (const outputOptions of outputOptionsList) {
 		await bundle.write(outputOptions);
 	}
+  await bundle.close();
 }

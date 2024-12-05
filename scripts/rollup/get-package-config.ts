@@ -1,9 +1,10 @@
-import { OutputOptions, rollup, RollupBuild, RollupOptions } from 'rollup';
+import { ModuleFormat, OutputOptions, RollupOptions } from 'rollup';
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import esbuild from "rollup-plugin-esbuild";
 import sizes from "rollup-plugin-sizes";
 import preserveDirectives from "rollup-plugin-preserve-directives";
+import dts from 'rollup-plugin-dts';
 
 import path from "path";
 import { getPackagePath } from '../utils/get-package-path';
@@ -14,7 +15,7 @@ export function getPackageConfig(packageName: string, type: "elements" | "varian
 	const outputOptionsList: OutputOptions[] = [
 		{
 			dir: path.join(packagePath, "dist/cjs"),
-			entryFileNames: "[name].cjs", 
+			entryFileNames: "[name].cjs",
 			format: "cjs",
 			sourcemap: true,
 			preserveModules: true,
@@ -23,7 +24,7 @@ export function getPackageConfig(packageName: string, type: "elements" | "varian
 		{
 			dir: path.join(packagePath, "dist/esm"),
 			entryFileNames: "[name].mjs",
-			format: "esm", 
+			format: "esm",
 			sourcemap: true,
 			preserveModules: true,
 		},
@@ -45,8 +46,21 @@ export function getPackageConfig(packageName: string, type: "elements" | "varian
 		],
 	};
 
+  const inputOptionsDts: RollupOptions = {
+		input: path.join(packagePath, "src/index.ts"),
+		plugins: [dts()],
+		external: [/node_modules/],
+	};
+
+  const outputOptionsDts: OutputOptions[] = [{
+		dir: path.join(packagePath, "dist/"),
+		format: "esm" as ModuleFormat,
+	}];
+
 	return {
 		inputOptions,
-		outputOptionsList
+		outputOptionsList,
+		inputOptionsDts,
+		outputOptionsDts,
 	};
 }

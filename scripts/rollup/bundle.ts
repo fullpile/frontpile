@@ -1,20 +1,21 @@
 import { rollup } from "rollup";
 import { getPackageConfig } from "./get-package-config";
 import { generateOutputs } from "./generate-outputs";
-import { getPackagePath } from "../utils/get-package-path";
-import { generateDts } from "./generate-dts";
 
 export async function bundle(packageName: string, type: "elements" | "variants" = "elements") {
-	const { inputOptions, outputOptionsList } = getPackageConfig(packageName, type);
+	const { inputOptions, outputOptionsList, inputOptionsDts, outputOptionsDts } = getPackageConfig(packageName, type);
 
 	let buildFailed = false;
 	try {
+    // generate the bundle without type declarations
 		await using bundle = await rollup(inputOptions);
-
 		console.log(bundle.watchFiles);
-
 		await generateOutputs(bundle, outputOptionsList);
-		await generateDts(packageName, type);
+
+    // generate the type declarations
+		await using bundleDts = await rollup(inputOptionsDts);
+		console.log(bundleDts.watchFiles);
+		await generateOutputs(bundleDts, outputOptionsDts);
 
 	} catch (error) {
 		buildFailed = true;
