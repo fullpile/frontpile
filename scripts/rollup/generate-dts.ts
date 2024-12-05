@@ -1,9 +1,8 @@
 import { rollup } from 'rollup';
 import dts from 'rollup-plugin-dts';
-import path, { format } from 'path';
+import path from 'path';
 import { getPackagePath } from '../utils/get-package-path';
 import { generateOutputs } from './generate-outputs';
-import { OutputOptions } from 'rollup';
 import { ModuleFormat } from 'rollup';
 
 export async function generateDts(packageName: string, type: "elements" | "variants" = "elements") {
