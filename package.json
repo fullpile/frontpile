@@ -7,6 +7,7 @@
     "node": ">=20"
   },
   "scripts": {
+    "typecheck": "tsc --skipLibCheck --noEmit",
     "build:package": "tsx scripts/build-package.ts",
     "build:all": "tsx scripts/build-all-packages.ts",
     "test": "jest",
