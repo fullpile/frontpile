@@ -44,23 +44,23 @@ export function getPackageConfig(packageName: string, type: "elements" | "varian
 			preserveDirectives(),
 			sizes(),
 		],
+    output: outputOptionsList,
 	};
+
+  const outputOptionsDts: OutputOptions[] = [{
+    dir: path.join(packagePath, "dist/"),
+    format: "esm" as ModuleFormat,
+  }];
 
   const inputOptionsDts: RollupOptions = {
 		input: path.join(packagePath, "src/index.ts"),
 		plugins: [dts()],
 		external: [/node_modules/],
+    output: outputOptionsDts,
 	};
-
-  const outputOptionsDts: OutputOptions[] = [{
-		dir: path.join(packagePath, "dist/"),
-		format: "esm" as ModuleFormat,
-	}];
 
 	return {
 		inputOptions,
-		outputOptionsList,
 		inputOptionsDts,
-		outputOptionsDts,
 	};
 }
