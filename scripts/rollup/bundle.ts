@@ -6,7 +6,6 @@ import { generateDts } from "./generate-dts";
 
 export async function bundle(packageName: string, type: "elements" | "variants" = "elements") {
 	const { inputOptions, outputOptionsList } = getPackageConfig(packageName, type);
-	const packagePath = getPackagePath(packageName, type);
 
 	let buildFailed = false;
 	try {
