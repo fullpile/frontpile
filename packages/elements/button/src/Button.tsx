@@ -1,7 +1,7 @@
 import type { ButtonProps } from './types';
 
 function Button(props: ButtonProps) {
-  return <button {...props} style={{ ...props.style }} />;
+  return <button {...props} style={{ ...props.style }}>{props.text}</button>;
 }
 
 export { Button };
