@@ -5,6 +5,11 @@ const config: StorybookConfig = {
   stories: [
     "../packages/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
+  core: {
+    disableWhatsNewNotifications: true,
+    disableTelemetry: true,
+    enableCrashReports: false,
+  },
   addons: [
     "@storybook/addon-webpack5-compiler-swc",
     "@storybook/addon-essentials",
@@ -38,6 +43,10 @@ const config: StorybookConfig = {
       };
     }
     return config;
+  },
+
+  docs: {
+    autodocs: 'tag',
   },
 };
 
