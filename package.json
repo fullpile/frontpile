@@ -2,7 +2,7 @@
   "name": "frontpile",
   "version": "0.1.1",
   "description": "Developer-focused, production-ready React component library.",
-  "packageManager": "pnpm@9.14.2",
+  "packageManager": "pnpm@9.15.0",
   "engines": {
     "node": ">=20"
   },
