@@ -1,5 +1,4 @@
-import type { ComponentPropsWithRef } from 'react';
-import type { CSSProperties } from 'react';
+import type { ComponentPropsWithRef, CSSProperties } from 'react';
 
 type InputProps = ComponentPropsWithRef<'input'> & {
   label: string;
