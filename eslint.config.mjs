@@ -3,6 +3,7 @@ import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 import jsxA11y from "eslint-plugin-jsx-a11y";
+import pluginJest from "eslint-plugin-jest";
 
 export default tseslint.config(
   {
@@ -17,13 +18,6 @@ export default tseslint.config(
       "**/node_modules/**",
       "docs/**",
     ],
-  },
-  {
-    languageOptions: {
-      parserOptions: {
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
   },
   pluginJs.configs.recommended,
   tseslint.configs.recommended,
@@ -141,4 +135,20 @@ export default tseslint.config(
       "jsxA11y/anchor-has-content": "off",
     },
   },
+  {
+    plugins: {
+      pluginJest,
+    },
+    files: [
+      "**/*.test.{ts,tsx}",
+    ],
+    languageOptions: {
+      globals: pluginJest.environments.globals.globals,
+    },
+    rules: {
+      'jest/no-export': 'off',
+      'jest/expect-expect': 'off',
+      'jest/valid-title': 'off',
+    },
+  }
 );
