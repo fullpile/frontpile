@@ -8,3 +8,5 @@ dist
 
 coverage
 *storybook.log
+
+.next

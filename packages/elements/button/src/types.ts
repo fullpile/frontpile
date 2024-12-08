@@ -1,12 +1,12 @@
-import type { ComponentPropsWithRef } from 'react';
+import type { ComponentPropsWithRef } from "react";
 
-type ButtonProps = ComponentPropsWithRef<'button'> & {
+type ButtonProps = ComponentPropsWithRef<"button"> & {
   text: string;
   style?: React.CSSProperties;
-  variant?: 'primary' | 'secondary';
-  size?: 'small' | 'medium' | 'large';
+  variant?: "primary" | "secondary";
+  size?: "small" | "medium" | "large";
   icon?: React.ReactNode;
-  iconPosition?: 'left' | 'right';
+  iconPosition?: "left" | "right";
   loading?: boolean;
   disabled?: boolean;
   fullWidth?: boolean;

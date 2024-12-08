@@ -3,7 +3,7 @@
  * https://jestjs.io/docs/configuration
  */
 
-import type {Config} from 'jest';
+import type { Config } from "jest";
 
 const config: Config = {
   // Stop running tests after `n` failures
@@ -16,14 +16,10 @@ const config: Config = {
   },
 
   // A list of paths to directories that Jest should use to search for files in
-  roots: [
-    "<rootDir>/packages"
-  ],
+  roots: ["<rootDir>/packages"],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  setupFilesAfterEnv: [
-    "<rootDir>/scripts/test/setup-jest.ts"
-  ],
+  setupFilesAfterEnv: ["<rootDir>/scripts/test/setup-jest.ts"],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   slowTestThreshold: 5,
@@ -32,10 +28,7 @@ const config: Config = {
   testEnvironment: "jsdom",
 
   // The glob patterns Jest uses to detect test files
-  testMatch: [
-    "**/__tests__/**/*.[jt]s?(x)",
-    "**/?(*.)+(spec|test).[tj]s?(x)"
-  ],
+  testMatch: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[tj]s?(x)"],
 
   // A map from regular expressions to paths to transformers
   transform: {

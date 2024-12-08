@@ -4,20 +4,14 @@ import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import pluginJest from "eslint-plugin-jest";
+import configPrettier from "eslint-config-prettier";
 
 export default tseslint.config(
   {
-    files: [
-      "packages/*/*/src/**/*.{js,ts,jsx,tsx}",
-    ],
+    files: ["packages/*/*/src/**/*.{js,ts,jsx,tsx}"],
   },
   {
-    ignores: [
-      "**/*.{mjs,cjs,d.ts,d.mts}",
-      "**/dist/**",
-      "**/node_modules/**",
-      "docs/**",
-    ],
+    ignores: ["**/*.{mjs,cjs,d.ts,d.mts}", "**/dist/**", "**/node_modules/**", "docs/**"],
   },
   pluginJs.configs.recommended,
   tseslint.configs.recommended,
@@ -65,9 +59,7 @@ export default tseslint.config(
     },
   },
   {
-    files: [
-      "scripts/**/*.{ts,tsx}",
-    ],
+    files: ["scripts/**/*.{ts,tsx}"],
     rules: {
       "no-console": "off",
     },
@@ -139,16 +131,15 @@ export default tseslint.config(
     plugins: {
       pluginJest,
     },
-    files: [
-      "**/*.test.{ts,tsx}",
-    ],
+    files: ["**/*.test.{ts,tsx}"],
     languageOptions: {
       globals: pluginJest.environments.globals.globals,
     },
     rules: {
-      'jest/no-export': 'off',
-      'jest/expect-expect': 'off',
-      'jest/valid-title': 'off',
+      "jest/no-export": "off",
+      "jest/expect-expect": "off",
+      "jest/valid-title": "off",
     },
-  }
+  },
+  configPrettier,
 );
