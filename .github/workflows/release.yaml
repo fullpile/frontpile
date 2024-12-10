@@ -34,8 +34,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: |
-        # Setup npm authentication
-        echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+        # Setup npm authentication - use a single .npmrc file
+        echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+        echo "registry=https://registry.npmjs.org/" >> .npmrc
+        echo "@frontpile:registry=https://registry.npmjs.org/" >> .npmrc
 
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
@@ -46,15 +48,10 @@ jobs:
             pkg_dir=$(dirname "$pkg")
             cd "$pkg_dir"
 
-            # Check if the package version exists
             pkg_name=$(node -p "require('./package.json').name")
             pkg_version=$(node -p "require('./package.json').version")
-            if ! npm view "$pkg_name@$pkg_version" version &> /dev/null; then
-              echo "Publishing $pkg_name@$pkg_version"
-              npm publish --access public
-            else
-              echo "Version $pkg_version of $pkg_name already exists, skipping"
-            fi
+            echo "Publishing $pkg_name@$pkg_version"
+            npm publish --access public
 
             cd - > /dev/null
           fi
