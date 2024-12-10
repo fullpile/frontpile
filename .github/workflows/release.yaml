@@ -19,6 +19,7 @@ jobs:
         node-version-file: '.nvmrc'
         cache: 'pnpm'
         registry-url: 'https://registry.npmjs.org'
+        scope: '@frontpile'
     - name: Install dependencies
       run: pnpm install
     - name: lint checks
