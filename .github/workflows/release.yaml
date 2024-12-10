@@ -38,7 +38,7 @@ jobs:
         git config --global user.name "github-actions[bot]"
 
         # Find all package.json files in the packages directory
-        for pkg in packages/**/package.json; do
+        for pkg in packages/elements/**/package.json; do
           if [ -f "$pkg" ]; then
             pkg_dir=$(dirname "$pkg")
             cd "$pkg_dir"
