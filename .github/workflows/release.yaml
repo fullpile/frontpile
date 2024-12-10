@@ -1,0 +1,58 @@
+name: "Release"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: "Release"
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+    - name: Use Node.js version
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: '.nvmrc'
+        cache: 'pnpm'
+    - name: Install dependencies
+      run: pnpm install
+    - name: lint checks
+      run: pnpm run lint
+    - name: unit tests
+      run: pnpm run test
+    - name: build
+      run: pnpm run build:all
+    - name: Configure npm
+      run: |
+        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+    - name: Version and publish packages
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+
+        # Find all package.json files in the packages directory
+        for pkg in packages/**/package.json; do
+          if [ -f "$pkg" ]; then
+            pkg_dir=$(dirname "$pkg")
+            cd "$pkg_dir"
+
+            # Check if the package version exists
+            pkg_name=$(node -p "require('./package.json').name")
+            pkg_version=$(node -p "require('./package.json').version")
+            if ! npm view "$pkg_name@$pkg_version" version &> /dev/null; then
+              echo "Publishing $pkg_name@$pkg_version"
+              npm publish --access public
+            else
+              echo "Version $pkg_version of $pkg_name already exists, skipping"
+            fi
+
+            cd - > /dev/null
+          fi
+        done
