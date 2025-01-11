@@ -10,42 +10,42 @@ jobs:
     name: "Release"
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v4
-    - name: Install pnpm
-      uses: pnpm/action-setup@v4
-    - name: Use Node.js version
-      uses: actions/setup-node@v4
-      with:
-        node-version-file: '.nvmrc'
-        cache: 'pnpm'
-        registry-url: 'https://registry.npmjs.org'
-        scope: '@frontpile'
-    - name: Install dependencies
-      run: pnpm install
-    - name: lint checks
-      run: pnpm run lint
-    - name: unit tests
-      run: pnpm run test
-    - name: build
-      run: pnpm run build:all
-    - name: Version and publish packages
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      run: |
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git config --global user.name "github-actions[bot]"
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: Use Node.js version
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+          registry-url: "https://registry.npmjs.org"
+          scope: "@frontpile"
+      - name: Install dependencies
+        run: pnpm install
+      - name: lint checks
+        run: pnpm run lint
+      - name: unit tests
+        run: pnpm run test
+      - name: build
+        run: pnpm run build:all
+      - name: Version and publish packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
 
-        # Find all package.json files in the packages directory
-        for pkg in packages/elements/**/package.json; do
-          if [ -f "$pkg" ]; then
-            pkg_dir=$(dirname "$pkg")
-            cd "$pkg_dir"
+          # Find all package.json files in the packages directory
+          for pkg in packages/elements/**/package.json; do
+            if [ -f "$pkg" ]; then
+              pkg_dir=$(dirname "$pkg")
+              cd "$pkg_dir"
 
-            pkg_name=$(node -p "require('./package.json').name")
-            pkg_version=$(node -p "require('./package.json').version")
-            echo "Publishing $pkg_name@$pkg_version"
-            npm publish --access public
+              pkg_name=$(node -p "require('./package.json').name")
+              pkg_version=$(node -p "require('./package.json').version")
+              echo "Publishing $pkg_name@$pkg_version"
+              npm publish --access public
 
-            cd - > /dev/null
-          fi
-        done
+              cd - > /dev/null
+            fi
+          done
