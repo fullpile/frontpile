@@ -4,7 +4,7 @@
   "description": "Developer-focused, production-ready React component library.",
   "packageManager": "pnpm@10.0.0",
   "engines": {
-    "node": ">=20"
+    "node": ">=22.1.0"
   },
   "scripts": {
     "prepare": "husky",
