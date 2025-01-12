@@ -39,7 +39,7 @@ export function getPackageConfig(packageName: string, type: "elements" | "varian
       esbuild({
         sourceMap: true,
         minify: true,
-        tsconfig: "./tsconfig.json",
+        tsconfig: path.join(process.cwd(), "tsconfig.json"),
       }),
       preserveDirectives(),
       sizes(),
