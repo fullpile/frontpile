@@ -1,6 +1,6 @@
 import { OutputOptions, RollupBuild } from "rollup";
 
-export async function generateOutputs(bundle: RollupBuild, outputOptionsList: OutputOptions[]) {
+export async function writeOutputs(bundle: RollupBuild, outputOptionsList: OutputOptions[]) {
   for (const outputOptions of outputOptionsList) {
     await bundle.write(outputOptions);
   }

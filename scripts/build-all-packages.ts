@@ -18,5 +18,5 @@ async function buildAllPackages() {
 // Execute the build
 buildAllPackages().catch((error) => {
   console.error("Error building packages:", error);
-  process.exit(error ? 1 : 0);
+  process.exit(1);
 });
