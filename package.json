@@ -16,6 +16,7 @@
     "lint:fix": "eslint --fix",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
+    "format:fix:docs": "prettier --write ./docs --plugin=prettier-plugin-tailwindcss",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -58,6 +59,7 @@
     "jest-axe": "^9.0.0",
     "jest-environment-jsdom": "^29.7.0",
     "prettier": "3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "rollup": "^4.30.1",
