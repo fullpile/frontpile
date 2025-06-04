@@ -8,7 +8,7 @@ const config: StorybookConfig = {
     disableTelemetry: true,
     enableCrashReports: false,
   },
-  addons: ["@storybook/addon-webpack5-compiler-swc", "@storybook/addon-essentials", "@storybook/addon-interactions"],
+  addons: ["@storybook/addon-webpack5-compiler-swc"],
   framework: {
     name: "@storybook/react-webpack5",
     options: {
@@ -37,10 +37,6 @@ const config: StorybookConfig = {
       };
     }
     return config;
-  },
-
-  docs: {
-    autodocs: "tag",
   },
 };
 
